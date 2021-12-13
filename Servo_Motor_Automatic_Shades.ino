@@ -1,73 +1,33 @@
-int one=2;
-int two=3;
-int three=4;
-int four=8;
-int five=9;
-int six=10;
-int seven=11;
+#include <Servo.h>
+
+Servo myservo;
+int buttonPin = 2;  
+
+int pos =0 ;
+int buttonState = 0; 
 
 void setup() {
-  pinMode(one,OUTPUT);
-  pinMode(two,OUTPUT);
-  pinMode(three,OUTPUT);
-  pinMode(four,OUTPUT);
-  pinMode(five,OUTPUT);
-  pinMode(six,OUTPUT);
-  pinMode(seven,OUTPUT);
+  myservo.attach(9); 
+  pinMode(buttonPin, INPUT);
 
-  delay(2000);
+  Serial.begin(9600); 
+
 }
 
 void loop() {
-  digitalWrite(seven,HIGH);
-  delay(2000);
-  digitalWrite(seven,LOW);
-  delay(2000);
-  digitalWrite(three,HIGH);
-  digitalWrite(four,HIGH);
-  delay(2000);
-  digitalWrite(three,LOW);
-  digitalWrite(four,LOW);
-  delay(2000);
-  digitalWrite(three,HIGH);
-  digitalWrite(four,HIGH);
-  digitalWrite(seven,HIGH);
-  delay(2000);
-  digitalWrite(three,LOW);
-  digitalWrite(four,LOW);
-  digitalWrite(seven,LOW);
-  delay(2000);
-  digitalWrite(three,HIGH);
-  digitalWrite(four,HIGH);
-  digitalWrite(one,HIGH);
-  digitalWrite(six,HIGH);
-  delay(2000);
-  digitalWrite(three,LOW);
-  digitalWrite(four,LOW);
-  digitalWrite(one,LOW);
-  digitalWrite(six,LOW);
-  delay(2000);
-  digitalWrite(three,HIGH);
-  digitalWrite(four,HIGH);
-  digitalWrite(one,HIGH);
-  digitalWrite(six,HIGH);
-  digitalWrite(seven,HIGH);
-  delay(2000);
-   digitalWrite(three,LOW);
-  digitalWrite(four,LOW);
-  digitalWrite(one,LOW);
-  digitalWrite(six,LOW);
-  digitalWrite(seven,LOW);
-  delay(2000);
-   digitalWrite(three,HIGH);
-  digitalWrite(four,HIGH);
-  digitalWrite(one,HIGH);
-  digitalWrite(six,HIGH);
-  digitalWrite(five,HIGH);
-  digitalWrite(two,HIGH);
-  delay(2000);
 
-
-
-
+buttonState = digitalRead(buttonPin);
+if (buttonState == HIGH) {
+	for (pos = 0; pos < 90; pos += 1) 
+	{         
+		myservo.write(pos); 
+		delay(15); 
+	}
+ 	 for (pos = 90; pos >0; pos -= 1) 
+	{         
+		myservo.write(pos); 
+		delay(15); 
+	}
+}
+  
 }
